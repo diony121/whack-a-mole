@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from "react";
 
 const GameContext = createContext();
 
-export const GameProvider = ({ Children}) => {
+export const GameProvider = ({ children}) => {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState([]);
   const [gameState, setGameState] = useState("welcome");
