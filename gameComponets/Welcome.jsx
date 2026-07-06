@@ -1,22 +1,21 @@
-import { useGame } from "../context/GameContext";
+import { useGame } from "../src/context/GameContext";
 
 export default function Welcome() {
-  const { startGame, highScore } = useGame();
+  const {startGame, highScore} = useGame();
 
   return (
     <div className="welcome-screen">
-      <h1>Whack a Mole</h1>
+      <h1>What a Mole</h1>
       <p>Welcome to Whack a Mole!</p>
-      <p>Whack a mole to earn points. How many can you get?</p>
-      
+      <p>Whack a mole to earn points. How many can your get?</p>
+
       <button onClick={startGame}>Play</button>
 
       <h2>High Scores</h2>
       {highScore.length === 0 ? (
         <p>None yet... Play the game</p>
-      ) : (
-        highScore.map((score, index) => <p key={index}>{score}</p>)
-      )}
+      ) : (highScore.map((score, index) => <p key={index}>{score}</p>))}
     </div>
-  );
+  )
+
 }
