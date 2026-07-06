@@ -3,7 +3,7 @@ import { useGame } from "../src/context/GameContext";
 import Hole from "./Hole";
 
 export default function Game() {
-  const { score, setScore, molePosition, setMolePosition, setGameState, timeLeft, setTimeLeft } = useGame();
+  const { score, setScore, molePosition, setMolePosition, setGameState, timeLeft, setTimeLeft, saveHighScore} = useGame();
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -19,6 +19,12 @@ export default function Game() {
     }, 1000);
     return () => clearInterval(timerRef.current);
   }, []);
+  useEffect(() => {
+    if (timeLeft === 0) {
+      saveHighScore(score);
+      setGameState("welcome");
+    }
+  }, [timeLeft]);
 
   const handleWhack = (index) => {
     if (timeLeft > 0 && index === molePosition) {
@@ -34,7 +40,6 @@ export default function Game() {
   return (
     <div className="game-board">
       <h2>Score: {score} | Time: {timeLeft}</h2>
-      {timeLeft === 0 && <button onClick={() => setGameState("welcome")}>Game Over! Go Back</button>}
       
       <div className="grid">
         {[...Array(9)].map((_, index) => (

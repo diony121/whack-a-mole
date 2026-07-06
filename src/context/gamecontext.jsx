@@ -17,6 +17,10 @@ export const GameProvider = ({ children}) => {
     setMolePosition(Math.floor(Math.random() * 9)); 
   };
 
+  const saveHighScore = (finalScore) => {
+    setHighScore((prev) => [...prev, finalScore]);
+  };
+
   const value = {
     score,
     setScore,
@@ -29,6 +33,7 @@ export const GameProvider = ({ children}) => {
     setMolePosition,
     timeLeft,
     setTimeLeft,
+    saveHighScore,
   };
 
   return (
